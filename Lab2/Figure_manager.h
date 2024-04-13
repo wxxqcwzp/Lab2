@@ -3,19 +3,21 @@
 #include"Figure.h"
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
 
+using namespace std;
 
 
-class Figure_manager
+class Figures_manager
 {
 private:
 	
-	vector <Figure*> figures;
+	vector <shared_ptr<Figure>> figures;
 
 public:
 
-	void add_figure(Figure *figure) { figures.push_back(figure); }
+	void add_figure(shared_ptr<Figure> figure) { figures.push_back(figure); }
 
 	void show_figures() {
 
@@ -23,14 +25,15 @@ public:
 
 		if (figures.empty()) { cout << "You haven't added any figure yet" << endl; return; }
 
-		for (auto* figure : figures ) { figure->show_figure(); }
+		for (auto& figure : figures ) { figure->show_figure(); }
 
 		cout << endl;
 	}
 
-	void set_figures(vector<Figure*> new_figures) {this->figures = new_figures;}
+	void set_figures(vector<shared_ptr<Figure>> &new_figures) { figures = new_figures;}
 
-	vector<Figure*> get_figures() { return figures; }
+	vector<shared_ptr<Figure>> get_figures() { return figures; }
+
 
 
 

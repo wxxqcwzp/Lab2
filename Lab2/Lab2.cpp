@@ -1,23 +1,74 @@
 ﻿#include "Figure.h"
 #include "Figure_manager.h"
+#include "Tasks.h"
+#include "Input.h"
+#include "Files.h"
 
 #include <iostream>
 
+using namespace std;
+
+enum target {
+	ADD_CIRCLE = 1,
+	ADD_RECTANGLE,
+	ADD_TRAPEZOID,
+	SHOW_FIGURES,
+	SAVE_FIGURES,
+	LOAD_FIGURES,
+	RUN_TESTS,
+	EXIT
+};
+
 int main()
 {
-	Circle circle(5);
+	system("chcp 65001");
+	system("cls");
 
-	circle.calculate_area();
+	int menu_item;
 
-	cout << "circle.calculate_area();" << circle.get_area() << endl;
+	bool repeat = true;
 
-	Rectangle rec(10, 5);
+	Figures_manager figures;
 
-	rec.calculate_area();
+	do {
 
-	cout << "circle.calculate_area();" << circle.get_area() << endl;
+		menu_item = InputInt("Select menu item : ", 0, 9);
 
-	cout << "rec.calculate_area();" << rec.get_area() << endl;
+		switch (menu_item)
+		{
+
+			case(ADD_CIRCLE): { add_circle(figures); break; }
+
+			case(ADD_RECTANGLE): { add_rectangle(figures); break; }
+
+			case(ADD_TRAPEZOID): { add_trapezoid(figures); break; }
+
+			case(SHOW_FIGURES): { figures.show_figures(); break; }
+
+			case(SAVE_FIGURES): { break; }
+
+			case(LOAD_FIGURES): { break; }
+
+			case(RUN_TESTS): { break; }
+
+			case(EXIT): { repeat = false; }
+
+		}
+	
+	} while (repeat);
 
 
+	string filepath = get_valid_filepath();
+
+	vector<shared_ptr<Figure>> figures_from_file = get_employees_from_file(filepath);
+
+	figures.set_figures(figures_from_file);
+
+	figures.show_figures();
+
+	/*vector<shared_ptr<Figure>> figures_to_expotrt = figures.get_figures();
+
+
+
+	export_to_file(figures_to_expotrt);*/
 }
