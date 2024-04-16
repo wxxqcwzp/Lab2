@@ -35,7 +35,7 @@ private:
 
 	double radius;
 
-	vector<double>fields{radius};
+	vector<double>fields{radius,area(),perimeter()};
 
 public:
 
@@ -70,7 +70,7 @@ private:
 	double length;
 	double width;
 
-	vector<double>fields{ length, width };
+	vector<double>fields{ length, width, area(), perimeter() };
 
 public:
 
@@ -110,7 +110,7 @@ private:
 	double bottom_base;
 	double height;
 
-	vector<double>fields{ right_side, left_side, top_base, bottom_base, height };
+	vector<double>fields{ right_side, left_side, top_base, bottom_base, height, area(), perimeter() };
 	
 public:
 

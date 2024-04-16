@@ -23,6 +23,8 @@ public:
 
 		cout << endl;
 
+		cout << "Your figures:" << endl;
+
 		if (figures.empty()) { cout << "You haven't added any figure yet" << endl; return; }
 
 		for (auto& figure : figures ) { figure->show_figure(); }

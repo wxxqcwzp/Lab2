@@ -33,7 +33,7 @@ bool confirm_overwrite(string filename) {
 
 }
 
-vector<shared_ptr<Figure>> get_employees_from_file(string filename) {
+vector<shared_ptr<Figure>> get_figures_from_file(string filename) {
 	vector<shared_ptr<Figure>> files;
 
 	ifstream input_file(filename);
@@ -201,6 +201,7 @@ vector<shared_ptr<Figure>> get_employees_from_file(string filename) {
 	}
 
 	input_file.close();
+
 	return files;	
 }
 

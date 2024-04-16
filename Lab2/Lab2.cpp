@@ -3,6 +3,7 @@
 #include "Tasks.h"
 #include "Input.h"
 #include "Files.h"
+#include "Show_menu.h"
 
 #include <iostream>
 
@@ -24,6 +25,8 @@ int main()
 	system("chcp 65001");
 	system("cls");
 
+	Show_greeting();
+
 	int menu_item;
 
 	bool repeat = true;
@@ -32,43 +35,31 @@ int main()
 
 	do {
 
+		Show_menu();
+
 		menu_item = InputInt("Select menu item : ", 0, 9);
 
 		switch (menu_item)
 		{
 
-			case(ADD_CIRCLE): { add_circle(figures); break; }
+		case(ADD_CIRCLE): { add_circle(figures); break; }
 
-			case(ADD_RECTANGLE): { add_rectangle(figures); break; }
+		case(ADD_RECTANGLE): { add_rectangle(figures); break; }
 
-			case(ADD_TRAPEZOID): { add_trapezoid(figures); break; }
+		case(ADD_TRAPEZOID): { add_trapezoid(figures); break; }
 
-			case(SHOW_FIGURES): { figures.show_figures(); break; }
+		case(SHOW_FIGURES): { figures.show_figures(); break; }
 
-			case(SAVE_FIGURES): { break; }
+		case(SAVE_FIGURES): { save_data(figures); break; }
 
-			case(LOAD_FIGURES): { break; }
+		case(LOAD_FIGURES): { load_data(figures); break; }
 
-			case(RUN_TESTS): { break; }
+		case(RUN_TESTS): { run_tests(); break; }
 
-			case(EXIT): { repeat = false; }
+		case(EXIT): { repeat = false; }
 
 		}
-	
+
 	} while (repeat);
 
-
-	string filepath = get_valid_filepath();
-
-	vector<shared_ptr<Figure>> figures_from_file = get_employees_from_file(filepath);
-
-	figures.set_figures(figures_from_file);
-
-	figures.show_figures();
-
-	/*vector<shared_ptr<Figure>> figures_to_expotrt = figures.get_figures();
-
-
-
-	export_to_file(figures_to_expotrt);*/
 }

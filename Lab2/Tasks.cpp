@@ -1,6 +1,7 @@
 #include "Figure.h"
 #include "Figure_manager.h"
 #include "Input.h"
+#include "Files.h"
 
 #include <iostream>
 
@@ -32,5 +33,25 @@ void add_trapezoid(Figures_manager &figures) {
 	double height = InputDouble("Enter trapezoid's height:", 0, DBL_MAX);
 
 	figures.add_figure(make_shared<Trapezoid>(rigth_side, left_side, top_base, bottom_base, height));
+
+}
+
+void load_data(Figures_manager& figures) {
+
+	string filepath = get_valid_filepath();
+
+	vector<shared_ptr<Figure>> figures_from_file = get_figures_from_file(filepath);
+
+	if(figures_from_file.empty()){ cout << "Data successfully loaded" << endl; }
+
+	figures.set_figures(figures_from_file);
+
+}
+
+void save_data(Figures_manager& figures) {
+
+	vector<shared_ptr<Figure>> figures_to_expotrt = figures.get_figures();
+
+	export_to_file(figures_to_expotrt);
 
 }
